@@ -11,7 +11,7 @@ export default function News() {
             </header>
             <main>
                 {articles.map(({ title, url }) => (
-                    <a href={url} title={title} target="_blank">
+                    <a href={url} title={title} target="_blank" rel="noreferrer">
                         <p>{title}</p>
                     </a>
                 ))}
