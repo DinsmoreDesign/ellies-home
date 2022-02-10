@@ -1,43 +1,10 @@
-//import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
 import { useAppSelector } from '../store/hooks';
-import { StyledContent } from '../components';
+import { Anchor, Banner, BannerTitle, ColoredFooter, Column, Gif, Link, PageContent } from '../components';
 
-import banner from '../assets/banner-lg.jpeg';
 import ellieHeart from '../assets/ellie-heart.gif';
-import obituary from '../assets/obituary.jpeg';
+import prayer from '../assets/ellie-prayer.jpeg';
 import angel from '../assets/jesus-welcomes-an-angel.jpeg';
 import { ReactComponent as ChevronDown } from '../assets/chevron-down.svg';
-
-const StyledBanner = styled.header`
-    background: url(${banner}) no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-`;
-
-const StyledAnchor = styled.a`
-    transition: opacity 0.3s ease-in-out;
-    :hover {
-        opacity: 0.8;
-    }
-`;
-
-const StyledGif = styled.img`
-    display: block;
-    width: 50%;
-    margin: 0 auto;
-`;
-
-const StyledColumn = styled.section.attrs({
-    className: 'column'
-})`
-    display: flex !important;
-    justify-content: center;
-`;
 
 export default function Home() {
     const title = useAppSelector(state => state.home.title);
@@ -46,34 +13,39 @@ export default function Home() {
 
     return (
         <main>
-            <StyledBanner>
-                <StyledAnchor href="#content" title="Go to content">
+            <Banner>
+                <BannerTitle>{title}</BannerTitle>
+                <Anchor href="#content" title="Go to content">
                     <ChevronDown height={50} width={50} fill="#FFF" />
-                </StyledAnchor>
-            </StyledBanner>
-            <StyledContent id="content">
-                <StyledGif src={ellieHeart} alt="Ellie banner" />
-                <h1>{title}</h1>
-                <h3>
-                    <em>{subtitle} -</em>
-                </h3>
+                </Anchor>
+            </Banner>
+            <PageContent id="content">
+                <Gif src={ellieHeart} alt="Ellie banner" />
+                <h2>{subtitle} -</h2>
                 <blockquote>
                     {description.map(desc => (
-                        <p>{desc}</p>
+                        <p>
+                            <em>{desc}</em>
+                        </p>
                     ))}
                 </blockquote>
                 <section className="row">
-                    <StyledColumn>
+                    <Column>
                         <img src={angel} alt="Jesus Welcomes an Angel" />
-                    </StyledColumn>
-                    <StyledColumn>
-                        <img src={obituary} alt="Ellie's Obituary" />
-                    </StyledColumn>
+                    </Column>
+                    <Column>
+                        <img src={prayer} alt="Ellie's Prayer" />
+                    </Column>
                 </section>
                 {/* <Link to="/news" className="button">
                     Read news coverage
                 </Link> */}
-            </StyledContent>
+            </PageContent>
+            <ColoredFooter>
+                <PageContent>
+                    <Link to="/news-coverage">Read news coverage</Link>
+                </PageContent>
+            </ColoredFooter>
         </main>
     );
 }
