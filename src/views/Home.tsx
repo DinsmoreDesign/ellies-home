@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { useAppSelector } from '../store/hooks';
+import { StyledContent } from '../components';
 
 import banner from '../assets/banner-lg.jpeg';
 import ellieHeart from '../assets/ellie-heart.gif';
@@ -25,12 +26,6 @@ const StyledAnchor = styled.a`
     }
 `;
 
-const StyledContent = styled.section.attrs({
-    className: 'container'
-})`
-    padding: 8rem 4rem;
-`;
-
 const StyledGif = styled.img`
     display: block;
     width: 50%;
@@ -50,7 +45,7 @@ export default function Home() {
     const description = useAppSelector(state => state.home.description);
 
     return (
-        <main className="wrapper">
+        <main>
             <StyledBanner>
                 <StyledAnchor href="#content" title="Go to content">
                     <ChevronDown height={50} width={50} fill="#FFF" />
